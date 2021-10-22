@@ -95,6 +95,9 @@ func notify(hookData GrafanaJson) {
 }
 
 func main() {
+
+	log.Println("Listening for webooks on: " + LISTEN_HOST + ":" + LISTEN_PORT)
+	log.Println("Using home-assistant at: " + HM_SERVICE_URI)
 	http.HandleFunc("/", receiveHook)
 	log.Fatal(http.ListenAndServe(LISTEN_HOST+":"+LISTEN_PORT, nil))
 }
