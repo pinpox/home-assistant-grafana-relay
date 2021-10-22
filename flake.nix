@@ -12,6 +12,10 @@
 
   outputs = { self, nixpkgs, flake-utils, ... }:
 
+    {
+      nixosModules = { ha-relay = import ./module.nix; };
+    } //
+
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
       in rec {
@@ -27,7 +31,8 @@
               maintainers = with maintainers; [ pinpox ];
               license = licenses.gpl3;
               description = "Grafana Alerts to home-assistant notifications";
-              homepage = "https://github.com/pinpox/home-assistant-grafana-relay";
+              homepage =
+                "https://github.com/pinpox/home-assistant-grafana-relay";
             };
           };
         };
@@ -38,8 +43,8 @@
             exePath = "/bin/home-assistant-grafana-relay";
           };
         };
-        defaultPackage = packages.ha-relay;
 
+        defaultPackage = packages.ha-relay;
         defaultApp = apps.ha-relay;
       });
 }
