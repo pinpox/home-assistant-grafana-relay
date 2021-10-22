@@ -3,12 +3,12 @@
  
  
 <p align="center">
- <img height="400" src="https://user-images.githubusercontent.com/1719781/138470470-d96ed6b8-0a07-44ef-8af3-7feb7e0f01f2.png">
-   <a href="https://grafana.com">Grafana</a> ❤️ <a href="https://www.home-assistant.io">Home-assistant</a>
+ <img height="170" src="https://user-images.githubusercontent.com/1719781/138470470-d96ed6b8-0a07-44ef-8af3-7feb7e0f01f2.png"></br>
+   <a href="https://grafana.com">Grafana</a> ❤️ <a href="https://www.home-assistant.io">Home-assistant</a></br></br>
 </p>
 
-Listens for alerts via webhooks from [Grafana](https://grafana.com) and relays
-as notifications using [Home-assistant](https://www.home-assistant.io/)
+Listens for alerts send via webhooks from [Grafana](https://grafana.com) and relays them 
+as notifications using [Home-assistant](https://www.home-assistant.io/). Alerts will be shown in home-assistant app and can additionally used in smart-home automations.
 
 ## Configuration
 
@@ -25,8 +25,7 @@ Configuration is done via environment variables.
 
 Generate a [long-lived access
 token](https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token)
-in home-assistant. Tokens can be created in the profile section
-(`https://home.domain.tld/profile`).
+in home-assistant. Tokens can be created in the profile section (`https://home.domain.tld/profile`).
 
 ### Grafana
 
@@ -68,17 +67,17 @@ module. A bare-minimum flake.nix would be as follows:
       hostname = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-			./configuration.nix
-			ha-relay.nixosModules.ha-relay
-			{
-				pinpox.services.home-assistant-grafana-relay = {
-					enable = true;
-					listenHost = "localhost";
-					listenPort = "12000";
-					haUri = "https://home.domain.com/api/services/notify/notify";
-					envFile = "/var/secrets/ha-envfile";
-				};
-			}
+          ./configuration.nix
+          ha-relay.nixosModules.ha-relay
+          {
+            pinpox.services.home-assistant-grafana-relay = {
+              enable = true;
+              listenHost = "localhost";
+              listenPort = "12000";
+              haUri = "https://home.domain.com/api/services/notify/notify";
+              envFile = "/var/secrets/ha-envfile";
+            };
+          }
         ];
       };
     };
