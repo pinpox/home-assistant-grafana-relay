@@ -1,8 +1,10 @@
 # home-assistant-grafana-relay
 
+ 
+ 
 <p align="center">
- <img src="http://s.4cdn.org/image/title/105.gif">
-  <b>[Grafana](https://grafana.com) ❤️ [Home-assistant](https://www.home-assistant.io) </b>
+ <img height="400" src="https://user-images.githubusercontent.com/1719781/138470470-d96ed6b8-0a07-44ef-8af3-7feb7e0f01f2.png">
+   <a href="https://grafana.com">Grafana</a> ❤️ <a href="https://www.home-assistant.io">Home-assistant</a>
 </p>
 
 Listens for alerts via webhooks from [Grafana](https://grafana.com) and relays
