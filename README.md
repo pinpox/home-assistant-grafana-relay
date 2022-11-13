@@ -47,6 +47,16 @@ export LISTEN_HOST="localhost"
 ./home-assistant-grafana-relay
 ```
 
+### Run with docker-compose
+
+To build and run the service with docker, you can use the `Dockerfile`.
+In production you can use docker-compose to start the service automatically:
+
+1. clone this repository
+2. create `.env` from `.env.example`
+3. `cd home-assistant-grafana-relay`
+4. `docker-compose up -d`
+
 ## NixOS module
 
 A flake.nix file is included for compatibility with [Nix
