@@ -1,0 +1,9 @@
+version: '3'
+services:
+  grafana_relay:
+    container_name: grafana_relay
+    build: .
+    restart: always
+    env_file: .env
+    ports: 
+      - ${LISTEN_PORT}:${LISTEN_PORT}
