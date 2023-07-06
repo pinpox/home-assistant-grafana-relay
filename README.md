@@ -72,10 +72,11 @@ module. A bare-minimum flake.nix would be as follows:
     ha-relay.url = "github:pinpox/home-assistant-grafana-relay";
   };
 
-  outputs = { home-manager, nixpkgs, ... }: {
+  outputs = inputs@ { ha-relay, nixpkgs, ... }: {
     nixosConfigurations = {
       hostname = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
           ha-relay.nixosModules.ha-relay

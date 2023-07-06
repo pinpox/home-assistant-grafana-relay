@@ -24,7 +24,7 @@ in {
       type = types.str;
       default = null;
       example = "http://home.domain.tld/api/services/notify/notify";
-      description = "Port to listen on";
+      description = "URI of Home Assistant notification service";
     };
 
     envFile = mkOption {
