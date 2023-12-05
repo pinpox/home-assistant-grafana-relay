@@ -25,7 +25,7 @@
             pname = "ha-relay";
             version = "1.0.0";
             src = self;
-            vendorSha256 = null;
+            vendorHash = null;
 
             meta = with pkgs.lib; {
               maintainers = with maintainers; [ pinpox ];
