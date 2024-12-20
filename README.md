@@ -20,6 +20,7 @@ Configuration is done via environment variables.
 | `HM_SERVICE_URI` | Home-assistant API endpoint | `http://home.domain.tld/api/services/notify/notify` |
 | `LISTEN_PORT`    | Port to listen on           | `12000`                                             |
 | `LISTEN_HOST`    | Adress to listen on         | `localhost`                                         |
+| `NOTIFICATION_CHANNEL`    | (Optional; Android only) Set [notification channel](https://companion.home-assistant.io/docs/notifications/notifications-basic/#notification-channels) | `my_channel_name`    |
 
 ### Home-assistant
 
