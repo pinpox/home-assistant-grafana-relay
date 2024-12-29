@@ -22,11 +22,15 @@ var LISTEN_PORT string
 // Host/ip to listen for webhooks from grafana
 var LISTEN_HOST string
 
+// Optional notification channel for Home Assistant
+var NOTIFICATION_CHANNEL string
+
 func init() {
 	AUTH_TOKEN = os.Getenv("AUTH_TOKEN")
 	HM_SERVICE_URI = os.Getenv("HM_SERVICE_URI")
 	LISTEN_PORT = os.Getenv("LISTEN_PORT")
 	LISTEN_HOST = os.Getenv("LISTEN_HOST")
+	NOTIFICATION_CHANNEL = os.Getenv("NOTIFICATION_CHANNEL")
 }
 
 type GrafanaJson struct {
@@ -63,12 +67,17 @@ func receiveHook(rw http.ResponseWriter, req *http.Request) {
 func notify(hookData GrafanaJson) {
 
 	// Encode the data
+	data := map[string]interface{}{
+		"image": hookData.ImageURL,
+	}
+	if NOTIFICATION_CHANNEL != "" {
+		// Add the channel only if it's specified
+		data["channel"] = NOTIFICATION_CHANNEL
+	}
 	postBody, err := json.Marshal(map[string]interface{}{
 		"message": hookData.Message,
 		"title":   hookData.Title,
-		"data": map[string]string{
-			"image": hookData.ImageURL,
-		},
+		"data": data,
 	})
 
 	if err != nil {
@@ -98,6 +107,9 @@ func main() {
 
 	log.Println("Listening for webooks on: " + LISTEN_HOST + ":" + LISTEN_PORT)
 	log.Println("Using home-assistant at: " + HM_SERVICE_URI)
+	if NOTIFICATION_CHANNEL != "" {
+		log.Println("Using android notification channel: " + NOTIFICATION_CHANNEL)
+	}
 	http.HandleFunc("/", receiveHook)
 	log.Fatal(http.ListenAndServe(LISTEN_HOST+":"+LISTEN_PORT, nil))
 }
